@@ -1,0 +1,1 @@
+{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"name":"Heumarkt"},"geometry":{"type":"Point","coordinates":[6.96001,50.935714]},"id":"1"},{"type":"Feature","properties":{"name":"Neumarkt"},"geometry":{"type":"Point","coordinates":[6.947691,50.935778]},"id":"2"}]}
