@@ -35,11 +35,10 @@ public class Service {
 	 * <p>
 	 * Exammples:
 	 * <ul>
-	 * <li><a href=
-	 * "http://localhost:8080/nextbushaltestellen/service/haltestellen">
+	 * <li><a href= "http://localhost:8080/nextbushaltestellen/service/stops">
 	 * /nextbushaltestellen/service/stops</a></li>
 	 * <li><a href=
-	 * "http://localhost:8080/nextbushaltestellen/service/haltestellen?geojson">
+	 * "http://localhost:8080/nextbushaltestellen/service/stops?geojson">
 	 * /nextbushaltestellen/service/stops?geojson</a></li>
 	 * </ul>
 	 * </p>

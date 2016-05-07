@@ -23,7 +23,7 @@ public class AskForStops implements AskFor<List<Stop>> {
 
 	public AskForStops(InputStream inputStream) throws JsonProcessingException, IOException {
 		CsvMapper mapper = new CsvMapper();
-		CsvSchema schema = mapper.schemaFor(Stop.class).withColumnSeparator(',').withoutHeader();
+		CsvSchema schema = mapper.schemaFor(Stop.class).withColumnSeparator(',').withSkipFirstDataRow(true);
 		MappingIterator<Stop> it = mapper.reader(Stop.class).with(schema).readValues(inputStream);
 
 		while (it.hasNextValue()) {

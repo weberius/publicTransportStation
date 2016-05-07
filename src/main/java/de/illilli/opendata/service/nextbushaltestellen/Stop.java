@@ -18,7 +18,7 @@ public class Stop {
 	@JsonProperty("stop_lat")
 	private String lat;
 	@JsonProperty("stop_lon")
-	private String lon;
+	private String lng;
 	@JsonProperty("zone_id")
 	private String zoneId;
 	@JsonProperty("stop_url")
@@ -39,6 +39,12 @@ public class Stop {
 	}
 
 	public String getName() {
+		String name = this.name;
+		try {
+			name = name.substring(name.lastIndexOf(',') + 2, name.length());
+		} catch (StringIndexOutOfBoundsException e) {
+			e.printStackTrace();
+		}
 		return name;
 	}
 
@@ -50,8 +56,8 @@ public class Stop {
 		return Double.parseDouble(lat);
 	}
 
-	public double getLon() {
-		return Double.parseDouble(lon);
+	public double getLng() {
+		return Double.parseDouble(lng);
 	}
 
 	public String getZoneId() {
