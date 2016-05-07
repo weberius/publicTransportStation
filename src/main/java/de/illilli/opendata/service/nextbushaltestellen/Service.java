@@ -37,10 +37,10 @@ public class Service {
 	 * <ul>
 	 * <li><a href=
 	 * "http://localhost:8080/nextbushaltestellen/service/haltestellen">
-	 * /nextbushaltestellen/service/haltestellen</a></li>
+	 * /nextbushaltestellen/service/stops</a></li>
 	 * <li><a href=
 	 * "http://localhost:8080/nextbushaltestellen/service/haltestellen?geojson">
-	 * /nextbushaltestellen/service/haltestellen?geojson</a></li>
+	 * /nextbushaltestellen/service/stops?geojson</a></li>
 	 * </ul>
 	 * </p>
 	 * 
@@ -50,8 +50,8 @@ public class Service {
 	 */
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
-	@Path("/haltestellen")
-	public String getHaltestellen() throws MalformedURLException, IOException {
+	@Path("/stops")
+	public String getStops() throws MalformedURLException, IOException {
 
 		request.setCharacterEncoding(ENCODING);
 		response.setCharacterEncoding(ENCODING);
@@ -60,11 +60,11 @@ public class Service {
 
 		Facade facade;
 		if (geojson) {
-			logger.info("call /haltestellen geojson");
-			facade = new HaltestellenGeojsonFacade();
+			logger.info("call /stops geojson");
+			facade = new StopsGeojsonFacade();
 		} else {
-			logger.info("call /haltestellen");
-			facade = new HaltestellenJsonFacade();
+			logger.info("call /stops");
+			facade = new StopsJsonFacade();
 		}
 
 		return facade.getJson();

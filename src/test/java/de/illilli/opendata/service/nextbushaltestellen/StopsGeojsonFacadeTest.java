@@ -11,7 +11,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import de.illilli.opendata.service.Facade;
 
-public class HaltestellenGeojsonFacadeTest {
+public class StopsGeojsonFacadeTest {
 
 	String json;
 
@@ -23,7 +23,7 @@ public class HaltestellenGeojsonFacadeTest {
 
 	@Test
 	public void testGetJson() throws JsonProcessingException {
-		Facade facade = new HaltestellenGeojsonFacade();
+		Facade facade = new StopsGeojsonFacade();
 		String expected = json;
 		String actual = facade.getJson();
 		Assert.assertEquals(expected, actual);

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import de.illilli.opendata.service.Facade;
 
-public class HaltestellenGeojsonFacade implements Facade {
+public class StopsGeojsonFacade implements Facade {
 
 	String json = "";
 
