@@ -1,4 +1,4 @@
-package de.illilli.opendata.service.nextbushaltestellen;
+package de.illilli.opendata.service.publicTransportStation;
 
 import java.util.Hashtable;
 import java.util.Map;

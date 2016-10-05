@@ -1,4 +1,4 @@
-package de.illilli.opendata.service.nextbushaltestellen;
+package de.illilli.opendata.service.publicTransportStation;
 
 import java.io.IOException;
 import java.net.MalformedURLException;

@@ -1,4 +1,4 @@
-package de.illilli.opendata.service.nextbushaltestellen;
+package de.illilli.opendata.service.publicTransportStation;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
