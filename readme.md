@@ -24,7 +24,7 @@ Diese Schnittstelle gibt alle nächsten Haltestellen im Umkreis von ca. 500 m um
 
 ## Tabellen anlegen
 
-	CREATE TABLE publictransport (
+	CREATE TABLE station (
 	    id           varchar(256),
 		-- tbd
 	    modtime      timestamp DEFAULT current_timestamp
