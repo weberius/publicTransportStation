@@ -8,7 +8,7 @@ Dieses Projekt befindet sich in der Entwicklung
 
 # Schnittstellen
 
-## /publicTransportDepatureTimeStation/service/nextstations/<lat,lng>?geojson
+## /publicTransportStation/service/nextstations/?latlng=<lat,lng>&geojson
 
 Diese Schnittstelle gibt alle nächsten Haltestellen im Umkreis von ca. 500 m um die übergebene Position zurück.
 
@@ -24,12 +24,19 @@ Diese Schnittstelle gibt alle nächsten Haltestellen im Umkreis von ca. 500 m um
 
 ## Tabellen anlegen
 
-	CREATE TABLE station (
-	    id           varchar(256),
-		-- tbd
-	    modtime      timestamp DEFAULT current_timestamp
-	);
-	SELECT AddGeometryColumn ('public','publictransport','geom',4326,'MULTIPOLYGON',2);
+    CREATE TABLE publictransport (
+      gid integer NOT NULL,
+      name character varying(40),
+      knotennumm character varying(20),
+      typ character varying(20),
+      nr_stadtte character varying(3),
+      stadtteil character varying(40),
+      nr_stadtbe character varying(1),
+      stadtbezir character varying(40),
+      hyperlink character varying(200),
+      objectid numeric(10,0)
+    );	
+    SELECT AddGeometryColumn ('public','publictransport','geom',4326,'MULTIPOLYGON',2);
 	
 ## DB-Tabellen initial einrichten
 
