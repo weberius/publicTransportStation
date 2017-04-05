@@ -22,6 +22,10 @@ Diese Schnittstelle gibt alle nächsten Haltestellen im Umkreis von ca. 500 m um
 
     sudo -u postgres createdb -O publictransport publictransport
 
+## Postgis topology
+
+    sudo -u postgres psql -c "CREATE EXTENSION postgis; CREATE EXTENSION postgis_topology;" publictransport
+    
 ## Tabellen anlegen
 
     CREATE TABLE publictransport (
@@ -36,7 +40,7 @@ Diese Schnittstelle gibt alle nächsten Haltestellen im Umkreis von ca. 500 m um
       hyperlink character varying(200),
       objectid numeric(10,0)
     );	
-    SELECT AddGeometryColumn ('public','publictransport','geom',4326,'MULTIPOLYGON',2);
+    SELECT AddGeometryColumn ('public','publictransport','geom',4326,'POINT',2);
 	
 ## DB-Tabellen initial einrichten
 
