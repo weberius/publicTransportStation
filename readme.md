@@ -1,6 +1,6 @@
 #Public Transport Departure Time Station
 
-Diese Services bieten einen systematischen Zugriff auf die Strassenbahn Haltestellen in Köln. Sie basieren auf dem Datensatz [Haltestellen Stadtbahn U-Bahn Koeln](https://www.offenedaten-koeln.de/dataset/haltestellen-stadtbahn-u-bahn-koeln) der [Offenen Daten der Stadt Köln](https://www.offenedaten-koeln.de/). Dafür werden die Daten in einer [PostgreSQL-Datenbank](https://www.postgresql.org/) mit [PostGis](http://www.postgis.net/) persistiert.
+Diese Services bieten einen systematischen Zugriff auf die Haltestellen im Verkehrsverbund Rhein-Sieg. Sie basieren auf dem Datensatz [VRS Verkehrsdaten GTFS](https://www.offenedaten-koeln.de/dataset/vrs-verkehrsdaten-gtfs) der [Offenen Daten der Stadt Köln](https://www.offenedaten-koeln.de/). Die Daten liegen im [GTFS-Format](https://developers.google.com/transit/gtfs/) vor. Sie werden werden in einer [PostgreSQL-Datenbank](https://www.postgresql.org/) mit [PostGis](http://www.postgis.net/) persistiert.
 
 # Entwicklungsstand
 
@@ -14,37 +14,48 @@ Diese Schnittstelle gibt alle nächsten Haltestellen im Umkreis von ca. 500 m um
 
 # Datenbank
 
+Um für unterschiedliche Verkehrsverbünde unterschiedliche Mandaten zu ermöglichen, wird eine Datenbank für vrs angelegt.
+
 ## DB User auf Postgres einrichten
 
     sudo -u postgres createuser -P publictransport
     
 ## Datenbank wahlergebnis anlegen
 
-    sudo -u postgres createdb -O publictransport publictransport
+    sudo -u postgres createdb -O publictransport vrs
 
 ## Postgis topology
 
-    sudo -u postgres psql -c "CREATE EXTENSION postgis; CREATE EXTENSION postgis_topology;" publictransport
+    sudo -u postgres psql -c "CREATE EXTENSION postgis; CREATE EXTENSION postgis_topology;" vrs
     
 ## Tabellen anlegen
 
-    CREATE TABLE publictransport (
-      gid integer NOT NULL,
-      name character varying(40),
-      knotennumm character varying(20),
-      typ character varying(20),
-      nr_stadtte character varying(3),
-      stadtteil character varying(40),
-      nr_stadtbe character varying(1),
-      stadtbezir character varying(40),
-      hyperlink character varying(200),
-      objectid numeric(10,0)
-    );	
-    SELECT AddGeometryColumn ('public','publictransport','geom',4326,'POINT',2);
+### stop
+
+Die Tabelle stop enthält alle Informationen zu den Haltestellen. Die Struktur basiert auf der [General Transport Feed Specification](https://de.wikipedia.org/wiki/General_Transit_Feed_Specification). Nicht alle Spalten enthalten 
+
+	CREATE TABLE stop (
+	    id integer NOT NULL,
+	    code character varying(40),
+	    name character varying(256),
+	    descrition character varying(256),
+	    lat double precision,
+	    lon double precision,
+	    zoneid character varying(40),
+	    url character varying(128),
+	    locationtype integer,
+	    parentstation character varying(40),
+	    timezone character varying(40)
+	);	
+	SELECT AddGeometryColumn ('public','stops','geom',4326,'POINT',2);
 	
 ## DB-Tabellen initial einrichten
 
-    psql -h localhost -U publictransport -d publictransport -a -f src/main/sql/publictransport.init.sql
+    psql -h localhost -U publictransport -d vrs -a -f src/main/sql/publictransport.init.sql
+    
+## Auf Kommandozeile mit der Datenbank verbinden
+
+    psql -h localhost -U publictransport vrs
 
 
 ## Verbindungsparameter
