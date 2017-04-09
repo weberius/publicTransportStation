@@ -14,3 +14,13 @@ CREATE TABLE stop (
 );	
 SELECT AddGeometryColumn ('public','stop','geom',4326,'POINT',2);
 
+DROP TABLE IF EXISTS agency;
+CREATE TABLE agency (
+	id integer NOT NULL,
+	name character varying(256),
+	url character varying(128),
+	timezone character varying(40),
+	lang character varying(2),
+	phone character varying(40),
+	fare_url character varying(128)
+)
