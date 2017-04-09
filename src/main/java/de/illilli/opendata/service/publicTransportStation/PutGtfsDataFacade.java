@@ -24,7 +24,10 @@ import de.illilli.jdbc.InsertDao;
 import de.illilli.jdbc.UpdateDao;
 import de.illilli.opendata.service.Config;
 import de.illilli.opendata.service.Facade;
+import de.illilli.opendata.service.publicTransportStation.jdbc.Agency2DTO;
+import de.illilli.opendata.service.publicTransportStation.jdbc.DeleteAgencys;
 import de.illilli.opendata.service.publicTransportStation.jdbc.DeleteStops;
+import de.illilli.opendata.service.publicTransportStation.jdbc.InsertAgency;
 import de.illilli.opendata.service.publicTransportStation.jdbc.InsertStop;
 import de.illilli.opendata.service.publicTransportStation.jdbc.Stop2DTO;
 
@@ -68,10 +71,15 @@ public class PutGtfsDataFacade implements Facade {
 
 		reader.run();
 
+		// 1. bisherige Daten löschen
+		logger.info("delete agencys");
+		new UpdateDao(new DeleteAgencys(), conn).execute();
+
 		List<Agency> agencyList = reader.getAgencies();
 		for (Agency agency : agencyList) {
-			System.out.println(agency);
+			new InsertDao(new InsertAgency(new Agency2DTO(agency)), conn).execute();
 		}
+		logger.info("agencys inserted");
 
 		// 1. bisherige Daten löschen
 		logger.info("delete stops");

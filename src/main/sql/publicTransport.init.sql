@@ -23,4 +23,4 @@ CREATE TABLE agency (
 	lang character varying(2),
 	phone character varying(40),
 	fare_url character varying(128)
-)
+);
