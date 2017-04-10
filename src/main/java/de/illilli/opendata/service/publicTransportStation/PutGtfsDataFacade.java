@@ -79,7 +79,7 @@ public class PutGtfsDataFacade implements Facade {
 		for (Agency agency : agencyList) {
 			new InsertDao(new InsertAgency(new Agency2DTO(agency)), conn).execute();
 		}
-		logger.info("agencys inserted");
+		logger.info("'" + agencyList.size() + "' agencys inserted");
 
 		// 1. bisherige Daten löschen
 		logger.info("delete stops");
@@ -90,7 +90,7 @@ public class PutGtfsDataFacade implements Facade {
 			new InsertDao(new InsertStop(new Stop2DTO(stop)), conn).execute();
 		}
 
-		logger.info("stops inserted");
+		logger.info("'" + store.getAllStops().size() + "' stops inserted");
 		conn.close();
 
 	}
