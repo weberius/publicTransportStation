@@ -8,7 +8,10 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import org.apache.log4j.Logger;
 import org.postgresql.ds.PGSimpleDataSource;
+
+import de.illilli.opendata.service.Config;
 
 /**
  * <a href=
@@ -31,6 +34,8 @@ import org.postgresql.ds.PGSimpleDataSource;
  */
 public class ConnectionEnvironment {
 
+	private final static Logger logger = Logger.getLogger(ConnectionEnvironment.class);
+
 	public static void setUpConnectionForJndi() throws IOException {
 
 		InputStream inputStream = ConnectionEnvironment.class.getResourceAsStream("/jndi.properties");
@@ -43,10 +48,11 @@ public class ConnectionEnvironment {
 			System.setProperty(Context.URL_PKG_PREFIXES, "org.apache.naming");
 
 			InitialContext ic = new InitialContext();
-			ic.createSubcontext("java:");
-			ic.createSubcontext("java:/comp");
-			ic.createSubcontext("java:/comp/env");
-			ic.createSubcontext("java:/comp/env/jdbc");
+			ic.createSubcontext(Config.getProperty("javax.naming.subcontext.0"));
+			ic.createSubcontext(Config.getProperty("javax.naming.subcontext.1"));
+			ic.createSubcontext(Config.getProperty("javax.naming.subcontext.2"));
+			ic.createSubcontext(Config.getProperty("javax.naming.subcontext.3"));
+			ic.createSubcontext(Config.getProperty("javax.naming.subcontext.4"));
 
 			// Construct DataSource
 			PGSimpleDataSource ds = new PGSimpleDataSource();
@@ -56,7 +62,10 @@ public class ConnectionEnvironment {
 			ds.setUser(properties.getProperty("user"));
 			ds.setPassword(properties.getProperty("password"));
 
-			ic.bind("java:/comp/env/jdbc/baumkataster", ds);
+			String bind = Config.getProperty("javax.naming.initContext.lookup") + "/"
+					+ Config.getProperty("javax.naming.envContext.lookup");
+			logger.info("bind context for test '" + bind + "'");
+			ic.bind(bind, ds);
 
 		} catch (NamingException ex) {
 			ex.printStackTrace();

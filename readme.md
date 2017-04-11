@@ -12,6 +12,22 @@ Dieses Projekt befindet sich in der Entwicklung
 
 Diese Schnittstelle gibt alle nächsten Haltestellen im Umkreis von ca. 500 m um die übergebene Position zurück.
 
+## /publicTransportStation/service/put/<verbund>
+
+Der Import der Daten kann über eine Schnittstelle initiiert werden. Voraussetzung ist, dass die Datei bereits heruntergeladen wurde und dass der Ort in der config.properties angegeben wurde. Die Daten stehen unter folgenden Adressen zum Download bereit:
+- http://download.vrsinfo.de/gtfs/google_transit.zip
+- http://download.vrsinfo.de/gtfs/google_transit_DB.zip
+
+Z.B. kann mit folgendem Aufruf die Datei heruntergeladen werden:
+
+    wget http://download.vrsinfo.de/gtfs/google_transit.zip /var/cache/publictransport
+    
+Der Import erfolgt dann über folgende Schnittstelle:
+
+    curl -X PUT http://localhost:8080/publicTransportStation/service/put/vrs
+    
+Liegt keine Datei zum Download vor, wird die Aktion mit einer Meldung abgebrochen.
+
 # Datenbank
 
 Um für unterschiedliche Verkehrsverbünde unterschiedliche Mandaten zu ermöglichen, wird eine Datenbank für vrs angelegt.
@@ -67,8 +83,8 @@ context.xml
 
     <Context>
         <ResourceLink 
-             name="jdbc/publictransport" 
-             global="jdbc/publictransport"
+             name="jdbc/publictransport/vrs" 
+             global="jdbc/publictransport/vrs"
              type="javax.sql.DataSource" />
     </Context> 
 
@@ -76,7 +92,7 @@ server.xml
 
     <GlobalNamingResources>
         <Resource 
-            name="jdbc/publictransport"
+            name="jdbc/publictransport/vrs"
             auth="Container"
             driverClassName="org.postgresql.Driver"
             maxTotal="25" 
@@ -88,6 +104,17 @@ server.xml
             validationQuery="select 1"/>
 
 Zu Testzwecken muss die Datei _src/test/resources/jndi.properties.template_ in _jndi.properties_ umbenannt und die Verbindungsparameter angepasst werden.
+
+# Installation
+
+Folgende Schritte müssen zur Installation durchgeführt werden:
+
+1. Checkout Sources
+2. Prepare Database
+3. Prepare Tomcat
+4. Build Application
+5. Download data
+6. Import Data
 
 # License
 

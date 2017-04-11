@@ -8,6 +8,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import de.illilli.opendata.service.Config;
+
 /**
  * <p>
  * Die ConnectionFactory unterstellt, dass im Tomcat die Verbindung zur
@@ -19,13 +21,13 @@ import javax.sql.DataSource;
  * 
  * <pre>
  * &lt;Resource 
- * 	name="jdbc/baumkataster" 
+ * 	name="jdbc/publictransport/vrs" 
  * 	auth="Container" 
  * 	type="javax.sql.DataSource"
  * 	username="username" 
  * 	password="password" 
  * 	driverClassName="org.postgresql.Driver"
- * 	url="jdbc:postgresql://server:5432/baumkataster" 
+ * 	url="jdbc:postgresql://server:5432/vrs" 
  * 	maxTotal="25" 
  * 	maxIdle="10"
  * 	validationQuery="select 1" /&gt;
@@ -36,8 +38,8 @@ public class ConnectionFactory {
 
 	public static Connection getConnection() throws SQLException, NamingException {
 		Context initContext = new InitialContext();
-		Context envContext = (Context) initContext.lookup("java:/comp/env");
-		DataSource ds = (DataSource) envContext.lookup("jdbc/baumkataster");
+		Context envContext = (Context) initContext.lookup(Config.getProperty("javax.naming.initContext.lookup"));
+		DataSource ds = (DataSource) envContext.lookup(Config.getProperty("javax.naming.envContext.lookup"));
 		Connection conn = ds.getConnection();
 		return conn;
 	}

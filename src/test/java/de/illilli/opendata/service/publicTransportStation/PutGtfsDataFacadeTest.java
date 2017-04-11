@@ -1,5 +1,6 @@
 package de.illilli.opendata.service.publicTransportStation;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -23,7 +24,7 @@ public class PutGtfsDataFacadeTest {
 	public static void main(String[] args) throws IOException, URISyntaxException, SQLException, NamingException {
 		ConnectionEnvironment.setUpConnectionForJndi();
 		URL url = PutGtfsDataFacadeTest.class.getClassLoader().getResource("./google_transit.zip");
-		Facade facade = new PutGtfsDataFacade(url);
+		Facade facade = new PutGtfsDataFacade(new File(url.toURI()));
 		logger.info("facade = " + facade.getJson());
 
 	}
@@ -38,7 +39,7 @@ public class PutGtfsDataFacadeTest {
 	public void test() throws IOException, URISyntaxException, SQLException, NamingException {
 		ConnectionEnvironment.setUpConnectionForJndi();
 
-		Facade facade = new PutGtfsDataFacade(this.url);
+		Facade facade = new PutGtfsDataFacade(new File(this.url.toURI()));
 
 		System.out.println(facade.getJson());
 	}

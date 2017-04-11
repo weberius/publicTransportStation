@@ -3,7 +3,6 @@ package de.illilli.opendata.service.publicTransportStation;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -34,6 +33,7 @@ import de.illilli.opendata.service.publicTransportStation.jdbc.Stop2DTO;
 public class PutGtfsDataFacade implements Facade {
 
 	private static final Logger logger = Logger.getLogger(PutGtfsDataFacade.class);
+	private String json = "{empty}";
 
 	/**
 	 * <p>
@@ -46,7 +46,7 @@ public class PutGtfsDataFacade implements Facade {
 	 * @throws SQLException
 	 */
 	public PutGtfsDataFacade() throws IOException, URISyntaxException, SQLException, NamingException {
-		this(new URL(Config.getProperty("vrs.verkehrsdaten.gtfsdb.url")));
+		this(new File(Config.getProperty("data.file.name")));
 	}
 
 	/**
@@ -60,11 +60,15 @@ public class PutGtfsDataFacade implements Facade {
 	 * @throws NamingException
 	 * @throws SQLException
 	 */
-	public PutGtfsDataFacade(URL url) throws IOException, URISyntaxException, SQLException, NamingException {
+	public PutGtfsDataFacade(File file) throws IOException, URISyntaxException, SQLException, NamingException {
+
+		if (!file.exists()) {
+			json = Config.getProperty("error.putgtfs.filenotfound");
+		}
 
 		Connection conn = ConnectionFactory.getConnection();
 		GtfsReader reader = new GtfsReader();
-		reader.setInputLocation(new File(url.toURI()));
+		reader.setInputLocation(file);
 
 		GtfsMutableDao store = new GtfsDaoImpl();
 		reader.setEntityStore(store);
@@ -93,11 +97,12 @@ public class PutGtfsDataFacade implements Facade {
 		logger.info("'" + store.getAllStops().size() + "' stops inserted");
 		conn.close();
 
+		json = Config.getProperty("success.putgtfs.import");
 	}
 
 	@Override
 	public String getJson() throws JsonProcessingException {
-		return "{nothing happen}";
+		return json;
 	}
 
 }
