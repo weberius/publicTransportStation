@@ -38,12 +38,44 @@ public class Service {
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Path("/ping")
-	public String getStops() throws MalformedURLException, IOException {
+	public String getPing() throws MalformedURLException, IOException {
 
 		request.setCharacterEncoding(ENCODING);
 		response.setCharacterEncoding(ENCODING);
 
 		return "{alive}";
+	}
+
+	/**
+	 * <p>
+	 * Beispiel:
+	 * <a href="http://localhost:8080/publicTransportStation/service/stops">
+	 * /publicTransportStation/service/stops</a>
+	 * </p>
+	 * 
+	 * @return
+	 * @throws SQLException
+	 * @throws NamingException
+	 * @throws IOException
+	 */
+	@GET
+	@Produces({ MediaType.APPLICATION_JSON })
+	@Path("/stops")
+	public String getStops() throws SQLException, NamingException, IOException {
+
+		request.setCharacterEncoding(ENCODING);
+		response.setCharacterEncoding(ENCODING);
+
+		boolean geojson = request.getParameter("geojson") != null;
+
+		Facade facade = new ErrorFacade("error.service");
+		if (geojson) {
+			facade = new StopsGeojsonFacade();
+		} else {
+			facade = new StopsFacade();
+		}
+
+		return facade.getJson();
 	}
 
 	/**

@@ -8,7 +8,16 @@ Dieses Projekt befindet sich in der Entwicklung
 
 # Schnittstellen
 
-## /publicTransportStation/service/nextstations/?latlng=<lat,lng>&geojson
+## /publicTransportStation/service/stops
+
+Diese Schnittstelle gibt alle Haltestellen in der Datenbank zurück.
+
+## /publicTransportStation/service/stops
+
+Diese Schnittstelle gibt alle Haltestellen in der Datenbank im geojson Format zurück.
+
+## /publicTransportStation/service/stops?geojson
+
 
 Diese Schnittstelle gibt alle nächsten Haltestellen im Umkreis von ca. 500 m um die übergebene Position zurück.
 
