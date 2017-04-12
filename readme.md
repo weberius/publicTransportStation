@@ -76,7 +76,7 @@ Die Tabelle stop enthält alle Informationen zu den Haltestellen. Die Struktur b
 	
 ## DB-Tabellen initial einrichten
 
-    psql -h localhost -U publictransport -d vrs -a -f src/main/sql/publictransport.init.sql
+    psql -h localhost -U publictransport -d vrs -a -f src/main/sql/publicTransport.init.sql
     
 ## Auf Kommandozeile mit der Datenbank verbinden
 
