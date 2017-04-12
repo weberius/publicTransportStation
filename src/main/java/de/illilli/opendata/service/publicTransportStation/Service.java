@@ -48,9 +48,14 @@ public class Service {
 
 	/**
 	 * <p>
-	 * Beispiel:
-	 * <a href="http://localhost:8080/publicTransportStation/service/stops">
-	 * /publicTransportStation/service/stops</a>
+	 * Beispiele:
+	 * <ul>
+	 * <li><a href="http://localhost:8080/publicTransportStation/service/stops">
+	 * /publicTransportStation/service/stops</a></li>
+	 * <li><a href=
+	 * "http://localhost:8080/publicTransportStation/service/stops?geojson">
+	 * /publicTransportStation/service/stops?geojson</a></li>
+	 * </ul>
 	 * </p>
 	 * 
 	 * @return

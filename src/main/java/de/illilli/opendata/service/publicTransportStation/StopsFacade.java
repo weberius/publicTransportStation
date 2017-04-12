@@ -20,7 +20,7 @@ import de.illilli.opendata.service.publicTransportStation.model.Stop;
 
 public class StopsFacade implements Facade {
 
-	private List<StopDTO> dtoList;
+	List<StopDTO> dtoList;
 
 	public StopsFacade() throws SQLException, NamingException, IOException {
 		Connection conn = ConnectionFactory.getConnection();
