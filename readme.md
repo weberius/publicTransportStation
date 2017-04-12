@@ -109,7 +109,7 @@ server.xml
             username="username"
             password="password"
             type="javax.sql.DataSource"
-            url="jdbc:postgresql://localhost:5432/publictransport"
+            url="jdbc:postgresql://localhost:5432/vrs"
             validationQuery="select 1"/>
 
 Zu Testzwecken muss die Datei _src/test/resources/jndi.properties.template_ in _jndi.properties_ umbenannt und die Verbindungsparameter angepasst werden.
