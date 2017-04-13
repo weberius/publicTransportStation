@@ -33,6 +33,8 @@ Diese Schnittstelle gibt die nächsten fünf Haltestellen zu einer übergebenen 
 
 Diese Schnittstelle gibt die nächsten fünf Haltestellen zu einer übergebenen geolocation im geojson Format zurück.
 
+Beispiel [/publicTransportStation/service/stops?latlng=50.959582,6.971568&geojson](https://tom.cologne.codefor.de/publicTransportStation/service/stops?latlng=50.959582,6.971568&geojson)
+
 ## /publicTransportStation/service/stops?bbox={lat,lng,lat,lng}
 
 Diese Schnittstelle gibt alle Haltestellen zu einer übergebenen boundingbox zurück.
@@ -40,6 +42,8 @@ Diese Schnittstelle gibt alle Haltestellen zu einer übergebenen boundingbox zur
 ## /publicTransportStation/service/stops?bbox={lat,lng,lat,lng}&geojson
 
 Diese Schnittstelle gibt alle Haltestellen zu einer übergebenen boundingbox im geojson Format zurück.
+
+Beispiel [/publicTransportStation/service/stops?bbox=50.940692,6.951216,50.931568,6.977266&geojson](https://tom.cologne.codefor.de/publicTransportStation/service/stops?bbox=50.940692,6.951216,50.931568,6.977266&geojson)
 
 ## /publicTransportStation/service/put/<verbund>
 
