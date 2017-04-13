@@ -6,20 +6,40 @@ Diese Services bieten einen systematischen Zugriff auf die Haltestellen im Verke
 
 Dieses Projekt befindet sich in der Entwicklung
 
+# Verwendete Technologien/ Bibliotheken
+
+- Java
+- Postgres/ Postgis
+- onebusaway-gtfs
+- Apache Commons
+- Opendatalab GeoJson
+- Google Gson
+
 # Schnittstellen
 
 ## /publicTransportStation/service/stops
 
 Diese Schnittstelle gibt alle Haltestellen in der Datenbank zurück.
 
-## /publicTransportStation/service/stops
+## /publicTransportStation/service/stops?geojson
 
 Diese Schnittstelle gibt alle Haltestellen in der Datenbank im geojson Format zurück.
 
-## /publicTransportStation/service/stops?geojson
+## /publicTransportStation/service/stops?latlng={lat,lng}
 
+Diese Schnittstelle gibt die nächsten fünf Haltestellen zu einer übergebenen geolocation zurück.
 
-Diese Schnittstelle gibt alle nächsten Haltestellen im Umkreis von ca. 500 m um die übergebene Position zurück.
+## /publicTransportStation/service/stops?latlng={lat,lng}&geojson
+
+Diese Schnittstelle gibt die nächsten fünf Haltestellen zu einer übergebenen geolocation im geojson Format zurück.
+
+## /publicTransportStation/service/stops?bbox={lat,lng,lat,lng}
+
+Diese Schnittstelle gibt alle Haltestellen zu einer übergebenen boundingbox zurück.
+
+## /publicTransportStation/service/stops?bbox={lat,lng,lat,lng}&geojson
+
+Diese Schnittstelle gibt alle Haltestellen zu einer übergebenen boundingbox im geojson Format zurück.
 
 ## /publicTransportStation/service/put/<verbund>
 
