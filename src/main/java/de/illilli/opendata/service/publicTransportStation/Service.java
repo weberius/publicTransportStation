@@ -63,6 +63,14 @@ public class Service {
 	 * "http://localhost:8080/publicTransportStation/service/stops?latlng=50.96659064159747,6.9881160312996728&geojson">
 	 * /publicTransportStation/service/stops?latlng=50.96659064159747,6.
 	 * 9881160312996728&geojson</a></li>
+	 * <li><a href=
+	 * "http://localhost:8080/publicTransportStation/service/stops?bbox=50.940692,6.951216,50.931568,6.977266">
+	 * /publicTransportStation/service/stops?bbox=50.940692,6.951216,50.931568,6
+	 * .977266</a></li>
+	 * <li><a href=
+	 * "http://localhost:8080/publicTransportStation/service/stops?bbox=50.940692,6.951216,50.931568,6.977266&geojson">
+	 * /publicTransportStation/service/stops?bbox=50.940692,6.951216,50.931568,6
+	 * .977266&geojson</a></li>
 	 * </ul>
 	 * </p>
 	 * 
