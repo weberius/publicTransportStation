@@ -1,0 +1,1 @@
+Der hier verwendete Datensatz 'google_transit' hat keine Informationen bzgl. der stop_times. Dies ist notwendig, weil die zum Einlesen der Daten eingesetzte Bibliothek 'onebusaway-gtfs' sehr speicherintensiv ist. 
