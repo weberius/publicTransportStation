@@ -29,7 +29,7 @@ public class StopsByLatLonFacadeTest {
 
 	@Test
 	public void test() throws IOException, SQLException, NamingException {
-		String latlng = "6.9881160312996728,50.96659064159747";
+		String latlng = "50.96659064159747,6.9881160312996728";
 		String limitAsString = "5";
 		Facade facade = new StopsByLatLonFacade(latlng, limitAsString);
 		String expected = IOUtils.toString(this.getClass().getResourceAsStream("/stopsByLatLonFacadeTest.json"));

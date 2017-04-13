@@ -21,11 +21,24 @@ import de.illilli.opendata.service.publicTransportStation.jdbc.StopDTO;
 import de.illilli.opendata.service.publicTransportStation.model.DTOList2Stops;
 import de.illilli.opendata.service.publicTransportStation.model.Stop;
 
+/**
+ * Request the next stations.
+ */
 public class StopsByLatLonFacade implements Facade {
 
 	List<StopDTO> dtoList;
 	private int limit = 5;
 
+	/**
+	 * 
+	 * @param latlng
+	 *            for example '50.96659064159747,6.9881160312996728'
+	 * @param limitAsString
+	 *            by default 5; increase if necessary
+	 * @throws SQLException
+	 * @throws NamingException
+	 * @throws IOException
+	 */
 	public StopsByLatLonFacade(String latlng, String limitAsString) throws SQLException, NamingException, IOException {
 
 		double lat = new LatLngFromString(latlng).getLat();

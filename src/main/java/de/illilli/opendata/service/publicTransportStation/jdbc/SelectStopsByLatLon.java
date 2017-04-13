@@ -29,7 +29,7 @@ public class SelectStopsByLatLon extends SelectStops implements Select<StopDTO> 
 
 	@Override
 	public Object[] getParameter() {
-		return new Object[] { this.lat, this.lng, this.limit };
+		return new Object[] { this.lng, this.lat, this.limit };
 	}
 
 }
