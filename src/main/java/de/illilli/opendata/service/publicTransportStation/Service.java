@@ -72,12 +72,29 @@ public class Service {
 		response.setCharacterEncoding(ENCODING);
 
 		boolean geojson = request.getParameter("geojson") != null;
+		String latlng = request.getParameter("latlng");
+		String bbox = request.getParameter("bbox");
+		String limit = request.getParameter("limit");
 
 		Facade facade = new ErrorFacade("error.service");
-		if (geojson) {
-			facade = new StopsGeojsonFacade();
+		if (bbox != null) {
+			if (geojson) {
+				facade = new StopsByBoundigBoxGeoJsonFacade(bbox);
+			} else {
+				facade = new StopsByBoundigBoxFacade(bbox);
+			}
+		} else if (latlng != null) {
+			if (geojson) {
+				facade = new StopsByLatLonGeoJsonFacade(latlng, limit);
+			} else {
+				facade = new StopsByLatLonFacade(latlng, limit);
+			}
 		} else {
-			facade = new StopsFacade();
+			if (geojson) {
+				facade = new StopsGeojsonFacade();
+			} else {
+				facade = new StopsFacade();
+			}
 		}
 
 		return facade.getJson();
