@@ -31,6 +31,7 @@ public class Stop {
 	private String ort;
 	private double lat;
 	private double lon;
+	private double distance;
 
 	public int getId() {
 		return id;
@@ -72,12 +73,28 @@ public class Stop {
 		this.lon = lon;
 	}
 
+	public double getDistance() {
+		return distance;
+	}
+
+	public void setDistance(double distance) {
+		this.distance = distance;
+	}
+
+	@Override
+	public String toString() {
+		return "Stop [id=" + id + ", name=" + name + ", ort=" + ort + ", lat=" + lat + ", lon=" + lon + ", distance="
+				+ distance + "]";
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + id;
 		long temp;
+		temp = Double.doubleToLongBits(distance);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + id;
 		temp = Double.doubleToLongBits(lat);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(lon);
@@ -96,6 +113,8 @@ public class Stop {
 		if (getClass() != obj.getClass())
 			return false;
 		Stop other = (Stop) obj;
+		if (Double.doubleToLongBits(distance) != Double.doubleToLongBits(other.distance))
+			return false;
 		if (id != other.id)
 			return false;
 		if (Double.doubleToLongBits(lat) != Double.doubleToLongBits(other.lat))
@@ -113,11 +132,6 @@ public class Stop {
 		} else if (!ort.equals(other.ort))
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Stop [id=" + id + ", name=" + name + ", ort=" + ort + ", lat=" + lat + ", lon=" + lon + "]";
 	}
 
 }

@@ -20,6 +20,7 @@ public class Stop2GeoJson {
 		OrtAndNameTokenizer oant = new OrtAndNameTokenizer(dto.getName());
 		properties.put("ort", oant.getOrt());
 		properties.put("name", oant.getName());
+		properties.put("distance", dto.getDistance());
 
 		feature.setProperties(properties);
 

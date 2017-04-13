@@ -35,6 +35,7 @@ public class StopDTO {
 	private String timezone;
 	private PGgeometry geom;
 	private String geojson;
+	private double distance;
 
 	public int getId() {
 		return id;
@@ -140,16 +141,26 @@ public class StopDTO {
 		this.geojson = geojson;
 	}
 
+	public double getDistance() {
+		return distance;
+	}
+
+	public void setDistance(double distance) {
+		this.distance = distance;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((code == null) ? 0 : code.hashCode());
 		result = prime * result + ((descrition == null) ? 0 : descrition.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(distance);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((geojson == null) ? 0 : geojson.hashCode());
 		result = prime * result + ((geom == null) ? 0 : geom.hashCode());
 		result = prime * result + id;
-		long temp;
 		temp = Double.doubleToLongBits(lat);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + locationtype;
@@ -181,6 +192,8 @@ public class StopDTO {
 			if (other.descrition != null)
 				return false;
 		} else if (!descrition.equals(other.descrition))
+			return false;
+		if (Double.doubleToLongBits(distance) != Double.doubleToLongBits(other.distance))
 			return false;
 		if (geojson == null) {
 			if (other.geojson != null)
@@ -233,7 +246,7 @@ public class StopDTO {
 		return "StopDTO [id=" + id + ", code=" + code + ", name=" + name + ", descrition=" + descrition + ", lat=" + lat
 				+ ", lon=" + lon + ", zoneId=" + zoneId + ", url=" + url + ", locationtype=" + locationtype
 				+ ", parentStation=" + parentStation + ", timezone=" + timezone + ", geom=" + geom + ", geojson="
-				+ geojson + "]";
+				+ geojson + ", distance=" + distance + "]";
 	}
 
 }

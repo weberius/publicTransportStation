@@ -13,6 +13,8 @@ public class DTO2Stop extends Stop {
 		OrtAndNameTokenizer oant = new OrtAndNameTokenizer(dto.getName());
 		super.setOrt(oant.getOrt());
 		super.setName(oant.getName());
+
+		super.setDistance(dto.getDistance());
 	}
 
 }
