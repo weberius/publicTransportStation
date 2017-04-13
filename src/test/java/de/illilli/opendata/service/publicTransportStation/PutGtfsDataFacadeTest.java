@@ -9,9 +9,12 @@ import java.sql.SQLException;
 import javax.naming.NamingException;
 
 import org.apache.log4j.Logger;
+import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
+
+import com.test.annotation.type.IntegrationTest;
 
 import de.illilli.jdbc.ConnectionEnvironment;
 import de.illilli.opendata.service.Facade;
@@ -26,7 +29,6 @@ public class PutGtfsDataFacadeTest {
 		URL url = PutGtfsDataFacadeTest.class.getClassLoader().getResource("./google_transit.zip");
 		Facade facade = new PutGtfsDataFacade(new File(url.toURI()));
 		logger.info("facade = " + facade.getJson());
-
 	}
 
 	@Before
@@ -35,13 +37,13 @@ public class PutGtfsDataFacadeTest {
 	}
 
 	@Test
-	@Ignore
-	public void test() throws IOException, URISyntaxException, SQLException, NamingException {
+	@Category(IntegrationTest.class)
+	public void testImportData() throws IOException, URISyntaxException, SQLException, NamingException {
 		ConnectionEnvironment.setUpConnectionForJndi();
-
 		Facade facade = new PutGtfsDataFacade(new File(this.url.toURI()));
-
-		System.out.println(facade.getJson());
+		String expected = "{\"msg\":\"gtfs data imported\"}";
+		String actual = facade.getJson();
+		Assert.assertEquals(expected, actual);
 	}
 
 }
