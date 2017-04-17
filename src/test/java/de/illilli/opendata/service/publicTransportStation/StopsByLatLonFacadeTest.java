@@ -29,6 +29,7 @@ public class StopsByLatLonFacadeTest {
 	}
 
 	@Test
+	@Category(IntegrationTest.class)
 	@Ignore
 	public void test() throws IOException, SQLException, NamingException {
 		String latlng = "50.96659064159747,6.9881160312996728";

@@ -11,6 +11,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
+
+import com.test.annotation.type.IntegrationTest;
 
 import de.illilli.jdbc.ConnectionEnvironment;
 import de.illilli.opendata.service.Facade;
@@ -25,6 +28,7 @@ public class StopsByBoundigBoxFacadeTest {
 	}
 
 	@Test
+	@Category(IntegrationTest.class)
 	@Ignore
 	public void test() throws SQLException, IOException, NamingException {
 		String bbox = "50.940692,6.951216,50.931568,6.977266";
