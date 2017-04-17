@@ -21,6 +21,7 @@ public class Stop2GeoJson {
 		properties.put("ort", oant.getOrt());
 		properties.put("name", oant.getName());
 		properties.put("distance", dto.getDistance());
+		properties.put("typ", "Stop");
 
 		feature.setProperties(properties);
 
