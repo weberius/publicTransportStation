@@ -9,6 +9,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
@@ -28,6 +29,7 @@ public class StopsByLatLonFacadeTest {
 	}
 
 	@Test
+	@Ignore
 	public void test() throws IOException, SQLException, NamingException {
 		String latlng = "50.96659064159747,6.9881160312996728";
 		String limitAsString = "5";

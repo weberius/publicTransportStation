@@ -11,6 +11,7 @@ import javax.naming.NamingException;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
@@ -38,6 +39,7 @@ public class PutGtfsDataFacadeTest {
 
 	@Test
 	@Category(IntegrationTest.class)
+	@Ignore
 	public void testImportData() throws IOException, URISyntaxException, SQLException, NamingException {
 		ConnectionEnvironment.setUpConnectionForJndi();
 		Facade facade = new PutGtfsDataFacade(new File(this.url.toURI()));

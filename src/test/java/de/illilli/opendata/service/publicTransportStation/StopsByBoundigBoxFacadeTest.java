@@ -9,6 +9,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import de.illilli.jdbc.ConnectionEnvironment;
@@ -24,6 +25,7 @@ public class StopsByBoundigBoxFacadeTest {
 	}
 
 	@Test
+	@Ignore
 	public void test() throws SQLException, IOException, NamingException {
 		String bbox = "50.940692,6.951216,50.931568,6.977266";
 		Facade facade = new StopsByBoundigBoxFacade(bbox);
